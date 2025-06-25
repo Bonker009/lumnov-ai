@@ -21,7 +21,7 @@ services:
     image: seyha2023/renthouse-frontend:latest
     container_name: renthouse-frontend
     environment:
-      NEXT_PUBLIC_API_URL: http://renthouse-backend:8080
+      NEXT_PUBLIC_API_URL: http://96.9.81.187:9024/api
     ports:
       - "0.0.0.0:9025:3000"
     depends_on:
