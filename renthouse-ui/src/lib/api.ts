@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getCookie, removeCookie } from './cookies';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://96.9.81.187:9024/api';
 
 console.log('API Base URL:', API_BASE_URL);
 
