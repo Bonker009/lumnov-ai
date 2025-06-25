@@ -1,0 +1,30 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+
+# Maven
+target
+!**/src/main/**/target
+!**/src/test/**/target
+
+# Temporary folders
+tmp/
+temp/
+
+# Uploads (will be mounted as volume)
+uploads/*
+!uploads/.gitkeep 
