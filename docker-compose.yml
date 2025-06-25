@@ -1,30 +1,7 @@
 services:
-  # PostgreSQL Database
-  postgres:
-    image: postgres:15-alpine
-    container_name: renthouse-postgres
-    environment:
-      POSTGRES_DB: lumnov
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-    ports:
-      - "9023:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./house-renting/migration.sql:/docker-entrypoint-initdb.d/migration.sql
-    networks:
-      - renthouse-network
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   # Backend API
   backend:
-    build:
-      context: ./house-renting
-      dockerfile: Dockerfile
+    image: seyha2023/renthouse-backend:latest
     container_name: renthouse-backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/lumnov
@@ -32,26 +9,21 @@ services:
       SPRING_DATASOURCE_PASSWORD: 1234
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "9024:8080"
+      - "0.0.0.0:9024:8080"
     volumes:
       - ./house-renting/uploads:/app/uploads
-    depends_on:
-      postgres:
-        condition: service_healthy
     networks:
       - renthouse-network
     restart: unless-stopped
 
   # Frontend UI
   frontend:
-    build:
-      context: ./renthouse-ui
-      dockerfile: Dockerfile
+    image: seyha2023/renthouse-frontend:latest
     container_name: renthouse-frontend
     environment:
       NEXT_PUBLIC_API_URL: http://renthouse-backend:8080
     ports:
-      - "9025:3000"
+      - "0.0.0.0:9025:3000"
     depends_on:
       - backend
     networks:
