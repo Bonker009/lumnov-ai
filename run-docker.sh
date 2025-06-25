@@ -42,10 +42,10 @@ start_services() {
     echo "✅ Services started successfully!"
     echo ""
     echo "🌐 Access your applications:"
-    echo "   Frontend: http://localhost:9025"
-    echo "   Backend API: http://localhost:9024"
-    echo "   Swagger UI: http://localhost:9024/swagger-ui.html"
-    echo "   Database: localhost:9023"
+    echo "   Frontend: http://203.255.78.58:9025"
+    echo "   Backend API: http://203.255.78.58:9024"
+    echo "   Swagger UI: http://203.255.78.58:9024/swagger-ui.html"
+    echo "   Database: 203.255.78.58:9023"
 }
 
 # Function to stop services
@@ -102,9 +102,9 @@ clean_everything() {
 # Function to show status
 show_status() {
     echo "📊 Service Status (Ports):"
-    echo "   Frontend: http://localhost:9025"
-    echo "   Backend API: http://localhost:9024"
-    echo "   Database: localhost:9023"
+    echo "   Frontend: http://203.255.78.58:9025"
+    echo "   Backend API: http://203.255.78.58:9024"
+    echo "   Database: 203.255.78.58:9023"
     docker-compose ps
 }
 
