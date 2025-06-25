@@ -22,12 +22,14 @@ show_usage() {
     echo "  stop      - Stop all services"
     echo "  restart   - Restart all services"
     echo "  build     - Build all services"
+    echo "  pull      - Pull latest images from Docker Hub"
     echo "  logs      - Show logs"
     echo "  clean     - Stop and remove everything"
     echo "  status    - Show service status"
     echo ""
     echo "Examples:"
     echo "  $0 start"
+    echo "  $0 pull"
     echo "  $0 logs backend"
     echo "  $0 clean"
 }
@@ -66,6 +68,16 @@ build_services() {
     echo "🔨 Building RentHouse services..."
     docker-compose build --no-cache
     echo "✅ Services built successfully"
+}
+
+# Function to pull latest images
+pull_images() {
+    echo "📥 Pulling latest images from Docker Hub..."
+    echo "Pulling backend image..."
+    docker pull seyha2023/renthouse-backend:latest
+    echo "Pulling frontend image..."
+    docker pull seyha2023/renthouse-frontend:latest
+    echo "✅ Images pulled successfully"
 }
 
 # Function to show logs
@@ -109,6 +121,9 @@ case "${1:-start}" in
         ;;
     build)
         build_services
+        ;;
+    pull)
+        pull_images
         ;;
     logs)
         show_logs "$2"
