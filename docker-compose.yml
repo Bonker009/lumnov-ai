@@ -1,5 +1,6 @@
 services: 
-
+ 
+ 
   # Backend API
   backend:
     build:
@@ -9,7 +10,7 @@ services:
     environment:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "8080:8080"
+      - "9024:8080"
     volumes:
       - ./house-renting/uploads:/app/uploads
     networks:
@@ -23,9 +24,9 @@ services:
       dockerfile: Dockerfile
     container_name: renthouse-frontend
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8080/api
+      NEXT_PUBLIC_API_URL: http://localhost:9024/api
     ports:
-      - "3000:3000"
+      - "9025:3000"
     depends_on:
       - backend
     networks:
