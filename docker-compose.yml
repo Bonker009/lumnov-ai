@@ -24,7 +24,7 @@ services:
       dockerfile: Dockerfile
     container_name: renthouse-frontend
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:9024/api
+      NEXT_PUBLIC_API_URL: http://96.9.81.187:9024/api
     ports:
       - "9025:3000"
     depends_on:
