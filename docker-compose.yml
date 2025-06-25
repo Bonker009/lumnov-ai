@@ -1,15 +1,14 @@
 services:
   # Backend API
   backend:
-    image: seyha2023/renthouse-backend:latest
+    build:
+      context: ./house-renting
+      dockerfile: Dockerfile
     container_name: renthouse-backend
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/lumnov
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 1234
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "0.0.0.0:9024:8080"
+      - "8080:8080"
     volumes:
       - ./house-renting/uploads:/app/uploads
     networks:
@@ -18,12 +17,14 @@ services:
 
   # Frontend UI
   frontend:
-    image: seyha2023/renthouse-frontend:latest
+    build:
+      context: ./renthouse-ui
+      dockerfile: Dockerfile
     container_name: renthouse-frontend
     environment:
-      NEXT_PUBLIC_API_URL: http://96.9.81.187:9024/api
+      NEXT_PUBLIC_API_URL: http://localhost:8080/api
     ports:
-      - "0.0.0.0:9025:3000"
+      - "3000:3000"
     depends_on:
       - backend
     networks:
