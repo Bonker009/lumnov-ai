@@ -8,7 +8,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
     ports:
-      - "9015:5432"
+      - "9023:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./house-renting/migration.sql:/docker-entrypoint-initdb.d/migration.sql
@@ -32,7 +32,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: 1234
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
-      - "9016:8080"
+      - "9024:8080"
     volumes:
       - ./house-renting/uploads:/app/uploads
     depends_on:
@@ -51,7 +51,7 @@ services:
     environment:
       NEXT_PUBLIC_API_URL: http://renthouse-backend:8080
     ports:
-      - "9017:3000"
+      - "9025:3000"
     depends_on:
       - backend
     networks:
